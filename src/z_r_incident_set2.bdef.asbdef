@@ -1,0 +1,26 @@
+managed implementation in class zbp_r_incident_set2 unique;
+//strict ( 2 );
+with draft;
+
+define behavior for Z_R_INCIDENT_SET2 alias Incident
+persistent table ZINCIDENTSSET2
+draft table ZINCIDENTSSET2_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly )
+  IncUUID,
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( numbering : managed )
+  IncUUID;
+}

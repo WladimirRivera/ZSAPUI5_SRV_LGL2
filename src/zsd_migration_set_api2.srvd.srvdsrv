@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition - RAP Migration Sets'
+define service ZSD_MIGRATION_SET_API2 {
+  expose Z_C_INCIDENT_SET2 as Incidents;
+  expose Z_C_FILES_SET2 as Files;
+  expose Z_c_SIGNATURE_SET2 as Signature;
+}

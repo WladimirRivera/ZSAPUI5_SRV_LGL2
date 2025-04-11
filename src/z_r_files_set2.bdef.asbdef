@@ -1,0 +1,55 @@
+managed implementation in class zbp_r_files_set unique;
+//strict ( 2 );
+with draft;
+
+define behavior for Z_R_FILES_SET2 alias Files
+persistent table zfilesset2
+draft table zfilesset2_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly )
+  FileUUID;
+
+  field ( readonly )
+  EmployeeId,
+  SapId,
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( mandatory : create )
+  FileName,
+  MediaContent,
+  MimeType;
+
+  draft action Activate;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zfilesset2
+  {
+    FileUUID = file_uuid;
+    AttId = att_id;
+    OrderId = order_id;
+    SapId = sap_id;
+    EmployeeId = employee_id;
+    FileName = file_name;
+    MimeType = mime_type;
+    MediaContent = media_content;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}
